@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Plots</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Machine Failure Prediction</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href={{url_for("login")}}>Logout</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+<iframe width="1500" height="800" src="https://lookerstudio.google.com/embed/reporting/baed4936-abdf-4dfd-86a9-3c6c96d73901/page/3q7HD" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src=".js/materialize.js"></script>
+  <script src="js/init.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+	<div style="margin: 10px 0 0 10px;width: 1000px">
+		<h3>Show Data on Google Pie Chart using Python Flask</h3>
+
+		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+	</div>
+  </body>
+</html>
+

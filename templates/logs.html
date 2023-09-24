@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Machine Failure Prediction - Logs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       }
+    a {
+        text-decoration: none;
+      }
+
+    li {
+        list-style: none;
+       }
+
+
+       .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px;
+          background-color: rgb(42, 190, 248);
+          color: #fff;
+          align-content: space-around;
+       }
+       .nav-links a {
+          color: #fff;
+          font-family: serif;
+          font-size: 18px;
+       }
+      .logo {
+          font-size: 32px;
+          font-family: serif;
+       }
+      .menu {
+          display: flex;
+          gap: 1em;
+          font-size: 18px;
+      }
+
+      .menu li:hover {
+          background-color: #4c9e9e;
+          border-radius: 5px;
+          transition: 0.3s ease;
+      }
+
+      .menu li {
+          padding: 5px 14px;
+      }
+
+/* DROPDOWN MENU */
+
+      .services {
+          position: relative;
+      }
+
+      .dropdown {
+          background-color: rgb(1, 139, 139);
+          padding: 1em 0;
+          position: absolute; /*WITH RESPECT TO PARENT*/
+          display: none;
+          border-radius: 8px;
+          top: 35px;
+      }
+      .dropdown li + li {
+          margin-top: 10px;
+      }
+
+      .dropdown li {
+          padding: 0.5em 1em;
+          width: 8em;
+          text-align: center;
+      }
+      .dropdown li:hover {
+          background-color: #4c9e9e;
+      }
+
+      .services:hover .dropdown {
+          display: block;
+      }
+    </style>
+</head>
+
+<body>
+   <!--<nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Machine Failure Prediction</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="{{ url_for('login') }}">Logout</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+          <li><a href="{{ url_for('display_livedata') }}">Live Data</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Data Statistics</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Manual Prediction</a></li>
+            <li><a href="{{ url_for('logs') }}"><b style = "color:black;">Logs</b></a></li>
+            <li><a href="{{ url_for('plot_demo') }}">Data Plots</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="{{ url_for('login') }}">Logout</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+          <li><a href="{{ url_for('display_livedata') }}">Live Data</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Data Statistics</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Manual Prediction</a></li>
+          <li><a href="{{ url_for('logs') }}"><b style = "color:black;">Logs</b></a></li>
+            <li><a href="{{ url_for('plot_demo') }}">Data Plots</a></li>
+        </ul>
+
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>-->
+   <nav class="navbar">
+    <div class="logo">Machine Failure Prediction</div>
+      <ul class="nav-links">
+          <div class="menu">
+            <li><a href="{{ url_for('dashboard') }}">Home</a></li>
+            <li><a href="{{ url_for('sample') }}">Manual Prediction</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Statistics</a></li>
+              <li><a href="{{ url_for('display_livedata') }}">Live Data</a></li>
+            <li><a href="{{ url_for('plot_demo') }}">Plots</a></li>
+            <li><a href="{{ url_for('logs') }}">Logs</a></li>
+            <li><a href="{{ url_for('login') }}">Logout</a></li>
+          </div>
+      </ul>
+    </nav>
+   <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <h3 class="header center orange-text"><p style="color:orange">Machine Failure Prediction - VMC Milling Machine</p></h3>
+        <div class="row center">
+          <h5 class="header col s12 light">Thing Speak cloud: Machine Data Logs
+          <br>
+          </h5>
+        </div>
+      </div>
+       <!-- create an HTML button to download the CSV file on click -->
+       <button class="btn waves-effect waves-light" onclick="download_csv_file()">Download CSV</button>
+   </div>
+   <br><br>
+<div style="overflow-x:auto;">
+    <table id ="log-table" class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Timestamp</th>
+            <th>UID</th>
+            <th>Type</th>
+            <th>Air Temperature</th>
+            <th>Process Temperature</th>
+            <th>RPM</th>
+            <th>Torque</th>
+            <th>Tool Wear</th>
+            <th>Predicted Failure</th>
+            <th>Machine Failure</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div >
+
+    <br>
+    <script type = "text/javascript">
+        const logBody = document.querySelector("#log-table > tbody");
+        //console.log(logBody);
+        function loadLogs()
+        {
+            const request = new XMLHttpRequest();
+            request.open("get","https://api.thingspeak.com/channels/2060037/feeds.json?api_key=XJI52RR42TKU1WT1&results");
+            request.onload = () => {
+                try{
+                    const json = JSON.parse(request.responseText);
+                    populateLogs(json)
+                }catch(e){
+                  console.warn("Could not load Logs! :( ");
+                }
+            }
+            request.send();
+        }
+        function populateLogs(json)
+        {
+              console.log(json);
+            //clears out the existing table
+            while(logBody.firstChild){
+                logBody.removeChild(logBody.firstChild);
+
+            }
+
+            //populate table
+            $.each(json, function (i, item) {
+                        if (i == 'feeds') {
+                          $.each(item, function (k, val) {
+                              const tr = document.createElement("tr");
+                              $.each(val, function (k1, val1) {
+                                  //console.log('ky => '+k1);
+                                  //console.log('val => '+val1);
+                                  const td = document.createElement("td");
+                                  td.textContent =val1;
+                                  tr.appendChild(td);
+                              });
+                              logBody.appendChild(tr);
+                          });
+                        }
+             });
+             setTimeout(loadLogs, 10000);
+           //setTimeout(populateLogs,10000);
+        }
+        document.addEventListener("DOMContentLoaded",() => {loadLogs();});
+
+        //create a user-defined function to download CSV file
+        function download_csv_file() {
+
+            //define the heading for each row of the data
+            var csv = "timestamp,uid,type,air_temperature,process_temperature,rotational_speed,torque,tool_wear,predicted_failure,machine_failure\n";
+
+            const request = new XMLHttpRequest();
+            request.open("get","https://api.thingspeak.com/channels/2060037/feeds.json?api_key=XJI52RR42TKU1WT1&results");
+            request.onload = () => {
+                try{
+                    const json = JSON.parse(request.responseText);
+                    console.log(json);
+                    $.each(json, function (i, item) {
+                        if (i == 'feeds') {
+                          $.each(item, function (k, val) {
+                                values = Object.values(val);
+                              csv += values.join(',');
+                              csv += "\n";
+
+                          });
+                        }
+                    });
+                    console.log(csv);
+                    //document.write(csv);
+
+                    var hiddenElement = document.createElement('a');
+                    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+                    hiddenElement.target = '_blank';
+
+                    //provide the name for the CSV file to be downloaded
+                    hiddenElement.download = 'machine_data_log.csv';
+                    hiddenElement.click();
+                }catch(e){
+                  console.warn("Could not load Logs! :( ");
+                }
+            }
+            request.send();
+
+            //display the created CSV data on the web browser
+            //document.write(csv);
+
+        }
+
+    </script>
+  </body>
+</html>
+

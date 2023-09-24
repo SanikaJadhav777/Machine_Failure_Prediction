@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>
+    .sidepanel  {
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  height: 750px;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  font-family: Serif;
+}
+
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color:#444;
+}
+
+  </style>
+</head>
+
+<body>
+  <script>
+    function openNav() {
+      document.getElementById("mySidepanel").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidepanel").style.width = "0";
+    }
+
+  </script>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Machine Failure Prediction </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{ url_for('login') }}">Logout</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('display_livedata') }}">Live Data</a></li>
+        <li><a href="{{ url_for('data_plots') }}">Data Statistics</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Manual Prediction</a></li>
+        <li><a href="{{ url_for('logs') }}">Logs</a></li>
+        <li><a href="{{ url_for('plot_demo') }}"><b style = "color:black;">Data Plots</b></a></li>
+
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="{{ url_for('login') }}">Logout</a></li>
+          <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('display_livedata') }}">Live Data</a></li>
+        <li><a href="{{ url_for('data_plots') }}">Data Statistics</a></li>
+            <li><a href="{{ url_for('data_plots') }}">Manual Prediction</a></li>
+        <li><a href="{{ url_for('logs') }}">Logs</a></li>
+        <li><a href="{{ url_for('plot_demo') }}">Data Plots</a></li>
+      </ul>
+
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <!--<div id="mySidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="{{url_for('data_plots') }}">Dashboard</a>
+    <a href="{{ url_for('login') }}">Live Data</a>
+    <a href="{{ url_for('login') }}">Logs</a>
+    <a href="{{ url_for('login') }}">Logout</a>
+      <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('plot_demo') }}">Data Plots</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+
+
+  <button class="openbtn" onclick="openNav()">☰</button>-->
+
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h3 class="header center orange-text"><p style="color:orange">Machine Failure Prediction - VMC Milling Machine</p></h3>
+      <div class="row">
+    <form action='/load_model_manual' method="post" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+            <!--<label><b>Air Temperature</b></label>
+            <br>
+            <select name="chart_c" id="chart_c" class="chart_cat">
+              <option value="ATH">Air Temperature Histogram</option>
+              <option value="PTH">Process Temperature Histogram</option>
+              <option value="MTP">Machine Type Pie Chart</option>
+              <option value="MTC">Machine Type Count Plot</option>
+            </select>-->
+          <label for="plot_option"><b>Select Plot Option</b></label>
+            <br>
+          <input id="plot_option" name="plot_option" placeholder="Process Temperature in [K]"  type="radio" class="validate">
+
+          <!--<select id="plot_option" name="plot_option">
+            <option value="ATH">ATH</option>
+            <option value="ATH">ATH</option>
+            <option value="ATH">ATH</option>
+          </select>-->
+
+
+        </div>
+        <div class="input-field col s4">
+
+          <label for="process"><b>Process Temperature </b></label>
+            <br>
+          <input id="process" name="process" placeholder="Process Temperature in [K]"  type="text" class="validate">
+
+        </div>
+
+        <div class="input-field col s4">
+            <label for="rpm"><b>Rotatitonal Speed</b></label>
+            <br>
+          <input id="rpm" name="rpm" placeholder="Rotational Speed in [rpm]" type="text" class="validate">
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+            <label for="torque"><b>Torque</b></label>
+            <br>
+          <input placeholder="Torque in [Nm]" name="torque" id="torque" type="text" class="validate">
+        </div>
+        <div class="input-field col s4">
+
+          <label for="tool"><b>Tool Wear </b></label>
+            <br>
+          <input id="tool" name="tool" placeholder="Tool Wear in [min]"  type="text" class="validate">
+
+        </div>
+        <div class="input-field col s4">
+
+          <label for="Type"><b>Type </b></label>
+            <br>
+          <input id="Type" name="Type" placeholder="Type[0,1,2]"  type="text" class="validate">
+
+        </div>
+      <div class="row">
+        <div class="input-field col s4">
+
+          <button formaction="/predict_random" submit name="rm" value="rm" class="btn-large waves-effect waves-light orange">Random Forest</button>
+      </div>
+        <div class="input-field col s4">
+
+          <button  formaction="/predict_svm" submit id="svm" name="svm" value="svm" class="btn-large waves-effect waves-light orange">Support Vector Machine</button>
+      </div>
+
+        <div class="input-field col s4">
+
+          <button formaction="/predict_decision" submit id="dt" name="dt" value="dt" class="btn-large waves-effect waves-light orange">Decision Tree</button>
+      </div>
+
+      </div>
+      </div>
+    </form>
+      </div>
+
+      <br>
+        {{pred}}
+      <br>
+
+    </div>
+  </div>
+
+
+    <br><br>
+  </div>
+  </div>>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src=".js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
+

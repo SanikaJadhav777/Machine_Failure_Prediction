@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-image: url('./static/images/slide-2.jpg');
+  background-repeat: no-repeat;
+}
+h1{
+    color: white;
+}
+.flex-container {
+  display: flex;
+  /*this centers the text horizontally*/
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  color: #fff;
+  font-size: 2.0rem;
+}
+
+.btn{
+    color: white;
+    background-color: transparent;
+    padding: 10px;
+    width: 140px;
+    height: 50px;
+    margin: 20px;
+}
+
+.btn:hover{
+    background-color: black;
+    color: white;
+
+}
+
+.lr{
+   display: flex;
+  /*this centers the text horizontally*/
+  justify-content: center;
+  margin: 25px;
+  align-items: center;
+
+}
+
+
+</style>
+</head>
+<body>
+<div class="flex-container">
+    <h1>Machine Failure Prediction</h1>
+
+</div>
+<div class="lr">
+        <form action='/load_model' method="post" class="col s12">
+
+          <button formaction="/login" submit name="login" value="login" class="btn">Login</button>
+          <button  formaction="/register" submit id="register" name="register" value="svm" class="btn">Register</button>
+        </form>
+</div>
+</body>
+</html>

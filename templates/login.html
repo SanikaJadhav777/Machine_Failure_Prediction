@@ -1,0 +1,115 @@
+<!-- Store this code in 'login.html' file inside the 'templates' folder -->
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Login </title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+		<style>
+			body {
+			  background-image: url('./static/images/slide-2.jpg');
+			  background-repeat: no-repeat;
+			}
+			.border{
+				padding: 40px 40px;
+				width: 370px;
+				height: 450px;
+				border: 1px solid white;
+				border-radius: 0px;
+				background-color: white;
+				margin-top: 100px;
+			}
+
+
+			.btn{
+				color: white;
+				background-color: black;
+				padding: 12px;
+				width: 140px;
+				height: 50px;
+				margin: 10px;
+				font-style: normal;
+				font-weight: bold;
+				font-family: Serif;
+				font-size: 20px;
+			}
+
+			.btn:hover{
+				background-color: #5b5b5b;
+				color: white;
+			}
+			.textbox{
+				padding: 15px 40px;
+				background-color: transparent;
+				text-color: #FFFFFF;
+				border-radius: 10px;
+				margin-top: 10px;
+				font-size: 18px;
+			}
+		::placeholder {
+			color: black;
+			opacity: 1;
+			font-weight: bold;
+			font-family: Serif;
+			font-style: normal;
+			font-size: 18px;
+		}
+
+		.word{
+			color: black;
+			font-weight: bold;
+			font-size: 36px;
+			font-family: Serif;
+			font-style: normal;
+		}
+		.bottom{
+			color: black;
+			font-weight: bold;
+			margin-top: 15px;
+		}
+		.alink{
+			color: blue;
+		}
+		.cbtn{
+			background-color: #131314;
+			border: none;
+			color: white;
+			padding: 8px 8px;
+			font-size: 12px;
+			cursor: pointer;
+			position:absolute;
+     		top:105px;
+     		right:550px;
+		}
+
+		.cbtn:hover {
+  			background-color: transparent;
+  			border: 1px solid black;
+  			color: black;
+		}
+	</style>
+	</head>
+	<body>
+		<div align="center">
+		<div align="center" class="border">
+			<div class="header">
+				<h1 class="word">Login</h1>
+			</div>
+			<h2 class="word">
+				<form action="{{ url_for('login') }}" method="post">
+					<!--<div class="corner">-->
+						<!---<button formaction="/close" submit name="close" value="close" class="btn"><i class="fa fa-close"></i></button>-->
+						<button formaction="/close" submit name="close" value="close" class="cbtn"><i class="fa fa-close"></i></button>
+
+					<div class="msg">{{ msg }}</div>
+						<input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/></br></br>
+						<input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/></br></br>
+						<input type="submit" class="btn" value="Sign In">
+					</form>
+			</h2>
+			<p class="bottom">Don't have an account? <a class="alink" href="{{url_for('register')}}"> Sign Up here</a></p>
+		</div>
+		</div>
+	</body>
+</html>
